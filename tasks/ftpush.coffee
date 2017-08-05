@@ -219,7 +219,7 @@ module.exports = (grunt) ->
       grunt.log.debug "Touch", util.inspect(path)
 
       @ftp.ls @normalizeFtpPath(path), (err, results) =>
-        return callback(results.compact()) if !err && results?.length? && results.length > 0
+        return callback(results.compact()) if !err && !(results.length == 1 && results[0] == undefined) && results?.length? && results.length > 0
 
         grunt.log.debug "Make directory", util.inspect(path)
 
